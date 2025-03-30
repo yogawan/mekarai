@@ -10,10 +10,10 @@ const DeepSeek = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [copiedIndex, setCopiedIndex] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("deepseek-r1-distill-llama-70b");
+  const [selectedOption, setSelectedOption] = useState("deepseek-r1-70b");
 
   const options = [
-    { label: "deepseek-r1-distill-llama-70b", value: "/deepseek-r1-distill-llama-70b", disabled: false },
+    { label: "deepseek-r1-70b", value: "/deepseek-r1-distill-llama-70b", disabled: false },
     { label: "gemma2-9b-it", value: "/gemma2-9b-it", disabled: false },
     { label: "jawiraiv1-6-3", value: "/", disabled: false },
     { label: "llama3-70b-8192", value: "/llama3-70b-8192", disabled: false },
@@ -122,7 +122,7 @@ const DeepSeek = () => {
     });
 
   return (
-    <div className="bg-[url('/assets/bg.png')] bg-cover bg-center h-screen">
+    <div className="bg-[url('/assets/red.png')] bg-cover bg-center h-screen">
       <SidebarOrganism />
       <div className="pt-[100px] pb-[500px] pl-3 pr-3 xl:pt-[200px] xl:pb-[300px] xl:pl-[300px] xl:pr-[300px]">
         
@@ -130,8 +130,8 @@ const DeepSeek = () => {
 
           <div className="pl-5 pr-5 pb-5 bg-none">
             <img className="w-[128px] mb-5" src="./assets/logo.png" alt="" />
-            <p className="text-3xl font-thin text-white">Hi, i'm JawirAI.</p>
-            <p className="text-xl font-thin text-white/75"><u><a href="https://github.com/yogawan/jawiraiv1.6.3">Open Source</a></u> <i className="text-white">User Interface</i> to interact with AI Model.</p>
+            <p className="text-3xl font-thin text-white">ꦗꦮꦶꦫꦆꦌ (JawirAI)</p>
+            <p className="text-xl font-thin text-white/75">The first Javanese <u><a href="https://github.com/yogawan/jawiraiv1.6.3">Open Source</a></u> <i className="text-white">User Interface</i> to interact with AI Model</p>
           </div>
 
           <div className="bg-transparent border border-white/15 rounded-3xl">
@@ -141,7 +141,7 @@ const DeepSeek = () => {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder="Ayo tanya sesuatu..."
+              placeholder="ꦠꦏꦺꦴꦤ꧀ꦎꦥꦺꦴꦮꦲꦺ"
               className="bg-transparent text-white rounded-3xl w-full h-20 p-5 resize-none focus:outline-none"
               disabled={isLoading}
             />
@@ -195,6 +195,11 @@ const DeepSeek = () => {
 
             </div>
 
+            <div className="-mt-4 ml-7 mb-3 flex items-center">
+              <Icon icon="fluent:arrow-turn-down-right-20-filled" className="text-white" />
+              <p className="text-white/50 text-xs ml-1 mt-[6px]">DeepThink (R1) 70b</p>
+            </div>
+
           </div>
 
         </div>
@@ -203,7 +208,7 @@ const DeepSeek = () => {
           <div className="flex-col">
             {chatHistory.length === 0 ? (
               <div className="mt-20">
-                <p className="text-xs text-center p-1 font-light leading-[120%] text-white/50">Jika kamu menemukan pesan yang tidak sepantasnya, harap laporkan <u><a href="https://github.com/yogawan/jawiraiv1.6.3">disini</a></u></p>
+                <p className="text-xs text-center p-1 font-light leading-[120%] text-white/50">Nek misal nemu pesan sik ra pantes, <br />lapore ne neng <u><a href="https://github.com/yogawan/jawiraiv1.6.3">kene</a></u> ngab, matursuwun.</p>
               </div>
             ) : (
               chatHistory.map((message, index) => (
@@ -251,9 +256,10 @@ const DeepSeek = () => {
             onClick={handleClearHistory}
             className="px-6 py-3 bg-red-500 text-white rounded-full hover:bg-red-600 transition"
           >
-            Clear History
+            ꦧꦸꦱꦺꦏ꧀ꦥꦼꦱꦺꦤ꧀
           </button>
         </div>
+
       </div>
     </div>
   );

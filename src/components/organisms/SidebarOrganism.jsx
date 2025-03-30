@@ -9,30 +9,10 @@ const SidebarOrganism = () => {
   };
 
   const menuItems = [
-    { label: "What is AI? How it works?", path: "/", icon: "" },
-    { label: "DeepSeek R1 from china, what is that?", path: "/", icon: "" },
-    { label: "GPT 4o, better than DeepSeek?", path: "/", icon: "" },
-    { label: "Gemini better than GPT 4o", path: "", icon: "" },
-    { label: "What is AI? How it works?", path: "/", icon: "" },
-    { label: "DeepSeek R1 from china, what is that?", path: "/", icon: "" },
-    { label: "GPT 4o, better than DeepSeek?", path: "/", icon: "" },
-    { label: "Gemini better than GPT 4o", path: "", icon: "" },
-    { label: "What is AI? How it works?", path: "/", icon: "" },
-    { label: "DeepSeek R1 from china, what is that?", path: "/", icon: "" },
-    { label: "GPT 4o, better than DeepSeek?", path: "/", icon: "" },
-    { label: "Gemini better than GPT 4o", path: "", icon: "" },
-    { label: "What is AI? How it works?", path: "/", icon: "" },
-    { label: "DeepSeek R1 from china, what is that?", path: "/", icon: "" },
-    { label: "GPT 4o, better than DeepSeek?", path: "/", icon: "" },
-    { label: "Gemini better than GPT 4o", path: "", icon: "" },
-    { label: "What is AI? How it works?", path: "/", icon: "" },
-    { label: "DeepSeek R1 from china, what is that?", path: "/", icon: "" },
-    { label: "GPT 4o, better than DeepSeek?", path: "/", icon: "" },
-    { label: "Gemini better than GPT 4o", path: "", icon: "" },
-    { label: "What is AI? How it works?", path: "/", icon: "" },
-    { label: "DeepSeek R1 from china, what is that?", path: "/", icon: "" },
-    { label: "GPT 4o, better than DeepSeek?", path: "/", icon: "" },
-    { label: "Gemini better than GPT 4o", path: "", icon: "" },
+    { label: "mikodian", path: "/", icon: "" },
+    { label: "lootzelui", path: "/", icon: "" },
+    { label: "gawanisreal", path: "/", icon: "" },
+    { label: "yogawan", path: "", icon: "" },
   ];
 
   return (
@@ -69,12 +49,12 @@ const SidebarOrganism = () => {
         </div>
 
         {/* Label */}
-        <p className="text-white text-xs px-3 py-3 border border-white/15 rounded-full" >Dalam Pengembangan!</p>
+        <p className="text-white text-xs px-3 py-3 border border-white/15 rounded-full" >JawirAIv1.6.3</p>
 
         {/* Logo */}
-        <div className="flex items-center text-lg font-inter font-bold italic underline text-black dark:text-white">
+        {/* <div className="flex items-center text-lg font-inter font-bold italic underline text-black dark:text-white">
           <div className="w-10 h-10 rounded-full bg-white"></div>
-        </div>
+        </div> */}
       </div>
 
       {/* Button Active */}
@@ -100,7 +80,7 @@ const SidebarOrganism = () => {
 
         {/* History Chat */}
         <ul className="space-y-[-12px] text-start">
-          <p className="text-3xl text-white m-3">Chat Histori</p>
+          <p className="text-3xl text-white m-3">Contributors</p>
           {menuItems.map((item, index) => (
             <li
               key={index}
