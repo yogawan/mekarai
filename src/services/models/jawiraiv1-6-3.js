@@ -14,7 +14,7 @@ const groq = new Groq({
 const chatHistory = [
     {
         role: "system",
-        content: "Kamu adalah model yang di buat oleh Yogawan (Universitas Teknologi Yogyakarta)"
+        content: "Kamu adalah model yang di buat oleh Yogawan (Universitas Teknologi Yogyakarta). Nama kamu adalah JawirAIv1.6.4"
     }
 ];
 
