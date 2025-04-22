@@ -1,3 +1,3 @@
 # JawirAI
 
-![Deskripsi Gambar](thumb.png)
+![Deskripsi Gambar](thumb.preview.png)
