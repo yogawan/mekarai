@@ -4,7 +4,6 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        <title>JawirAI</title>
         <link rel="icon" href="/favicon/icon.png" />
       </Head>
       <body className="antialiased bg-background">

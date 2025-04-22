@@ -5,6 +5,7 @@ import ChatForm from "@/components/ChatForm";
 import ChatHistory from "@/components/ChatHistory";
 import ChatFloating from "@/components/ChatFloating";
 import Navbar from "@/components/Navbar";
+import Head from "next/head";
 
 const ChatAI = () => {
   const [input, setInput] = useState("");
@@ -50,7 +51,10 @@ const ChatAI = () => {
       const aiMessage = { role: "ai", content: aiResponse };
       setChatHistory((prev) => [...prev, aiMessage]);
     } catch {
-      setChatHistory((prev) => [...prev, { role: "ai", content: "Sorry, an error occurred." }]);
+      setChatHistory((prev) => [
+        ...prev,
+        { role: "ai", content: "Sorry, an error occurred." },
+      ]);
     } finally {
       setIsLoading(false);
     }
@@ -62,35 +66,38 @@ const ChatAI = () => {
 
   return (
     <div className="bg-[url('/assets/red.png')] bg-cover bg-center flex justify-center pt-32">
-        <div className="w-full sm:w-[720px]">
-          <div className="flex flex-col min-h-screen">
-            <Navbar />
-            {!hasHistory && (
-              <div>
-                <ChatHeader />
-                <ChatForm
-                  input={input}
-                  setInput={setInput}
-                  handleSend={handleSend}
-                  isLoading={isLoading}
-                />
-              </div>
-            )}
-            {hasHistory && (
-              <ChatFloating
+      <Head>
+        <title>JawirAI</title>
+      </Head>
+      <div className="w-full sm:w-[720px]">
+        <div className="flex flex-col min-h-screen">
+          <Navbar />
+          {!hasHistory && (
+            <div>
+              <ChatHeader />
+              <ChatForm
                 input={input}
                 setInput={setInput}
                 handleSend={handleSend}
                 isLoading={isLoading}
               />
-            )}
-            <ChatHistory
-              chatHistory={chatHistory}
+            </div>
+          )}
+          {hasHistory && (
+            <ChatFloating
+              input={input}
+              setInput={setInput}
+              handleSend={handleSend}
               isLoading={isLoading}
-              handleClearHistory={handleClearHistory}
             />
-          </div>
+          )}
+          <ChatHistory
+            chatHistory={chatHistory}
+            isLoading={isLoading}
+            handleClearHistory={handleClearHistory}
+          />
         </div>
+      </div>
     </div>
   );
 };
