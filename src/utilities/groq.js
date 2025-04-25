@@ -1,3 +1,4 @@
+// src/utilities/groq.js
 import { Groq } from 'groq-sdk';
 
 const GROQ_API = process.env.NEXT_PUBLIC_GROQ;
