@@ -65,13 +65,13 @@ const ChatAI = () => {
   };
 
   return (
-    <div className="bg-[url('/assets/red.png')] bg-cover bg-center flex justify-center pt-32">
+    <div className="bg-[#1A3C3D] bg-center flex justify-center pt-32">
       <Head>
         <title>JawirAI</title>
       </Head>
       <div className="w-full sm:w-[720px]">
         <div className="flex flex-col min-h-screen">
-          <Navbar />
+          {/* <Navbar /> */}
           {!hasHistory && (
             <div>
               <ChatHeader />

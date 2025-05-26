@@ -15,7 +15,7 @@ const ChatForm = ({ input, setInput, handleSend, isLoading }) => {
         value={input}
         onChange={(e) => setInput(e.target.value)}
         onKeyDown={handleKeyDown}
-        placeholder="ꦠꦏꦺꦴꦤ꧀ꦎꦥꦺꦴꦮꦲꦺ"
+        placeholder="Masukan pesan disini"
         className="bg-transparent text-white/50 rounded-3xl w-full h-20 sm:h-32 p-5 resize-none focus:outline-none"
         disabled={isLoading}
       />
