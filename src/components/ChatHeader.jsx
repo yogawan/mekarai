@@ -12,6 +12,7 @@ const ChatHeader = () => (
       {/* <u><a href="https://github.com/yogawan/jawiraiv1.6.3">Open Source</a></u>
       <i className="text-white">User Interface</i>
       to interact with AI Model */}
+      Tanya apa saja seputar banjir.
     </p>
   </div>
 );
