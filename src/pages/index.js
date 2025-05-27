@@ -65,7 +65,7 @@ const ChatAI = () => {
   };
 
   return (
-    <div className="bg-[#1A3C3D] bg-center flex justify-center pt-32">
+    <div className="bg-[#303030] bg-center flex justify-center pt-32">
       <Head>
         <title>JawirAI</title>
       </Head>
