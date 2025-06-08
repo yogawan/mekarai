@@ -1,3 +1,3 @@
-# MekarJS AI
+# MekarJS
 
 ![Deskripsi Gambar](thumb.preview.png)
