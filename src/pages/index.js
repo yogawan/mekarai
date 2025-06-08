@@ -67,7 +67,7 @@ const ChatAI = () => {
   return (
     <div className="bg-[url('/assets/red.png')] bg-cover bg-center flex justify-center pt-32">
       <Head>
-        <title>JawirAI</title>
+        <title>MekarAI</title>
       </Head>
       <div className="w-full sm:w-[720px]">
         <div className="flex flex-col min-h-screen">
