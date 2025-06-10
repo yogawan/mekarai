@@ -1,3 +1,4 @@
+// src/components/ProtectedImage.js
 import React from "react";
 
 const ProtectedImage = ({ src, alt, className }) => (

@@ -1,10 +1,10 @@
+// src/pages/index.js
 import React, { useState, useEffect } from "react";
 import { requestToGroqAI } from "@/utilities/groq";
 import ChatHeader from "@/components/ChatHeader";
 import ChatForm from "@/components/ChatForm";
 import ChatHistory from "@/components/ChatHistory";
 import ChatFloating from "@/components/ChatFloating";
-import Navbar from "@/components/Navbar";
 import Head from "next/head";
 
 const ChatAI = () => {
@@ -53,7 +53,7 @@ const ChatAI = () => {
     } catch {
       setChatHistory((prev) => [
         ...prev,
-        { role: "ai", content: "Sorry, an error occurred." },
+        { role: "ai", content: "Maaf, terjadi kesalahan. Silakan coba lagi." },
       ]);
     } finally {
       setIsLoading(false);
@@ -65,16 +65,18 @@ const ChatAI = () => {
   };
 
   return (
-    <div className="bg-[url('/assets/red.png')] bg-cover bg-center flex justify-center pt-32">
+    <div className="min-h-screen bg-[#EEEEEE]">
       <Head>
-        <title>MekarAI</title>
+        <title>MekarAI - Chat dengan AI</title>
+        <meta name="description" content="Interface modern untuk berinteraksi dengan JawirAI" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <div className="w-full sm:w-[720px]">
-        <div className="flex flex-col min-h-screen">
-          <Navbar />
-          {!hasHistory && (
-            <div>
-              <ChatHeader />
+      
+      <div className="flex flex-col min-h-screen">
+        {!hasHistory ? (
+          <div className="flex-1 flex flex-col justify-center">
+            <ChatHeader />
+            <div className="pb-8">
               <ChatForm
                 input={input}
                 setInput={setInput}
@@ -82,21 +84,24 @@ const ChatAI = () => {
                 isLoading={isLoading}
               />
             </div>
-          )}
-          {hasHistory && (
+          </div>
+        ) : (
+          <>
+            <div className="flex-1 pt-8">
+              <ChatHistory
+                chatHistory={chatHistory}
+                isLoading={isLoading}
+                handleClearHistory={handleClearHistory}
+              />
+            </div>
             <ChatFloating
               input={input}
               setInput={setInput}
               handleSend={handleSend}
               isLoading={isLoading}
             />
-          )}
-          <ChatHistory
-            chatHistory={chatHistory}
-            isLoading={isLoading}
-            handleClearHistory={handleClearHistory}
-          />
-        </div>
+          </>
+        )}
       </div>
     </div>
   );

@@ -1,25 +1,31 @@
+// src/components/ChatMessage.js
 import { Icon } from "@iconify/react";
 import CodeBlock from "./CodeBlock";
 
 const ChatMessage = ({ message, index }) => (
-  <div className={`flex m-5 ${message.role === "user" ? "justify-end" : "justify-start"}`}>
-    {message.role !== "user" && (
-      <div className="text-center text-xs text-white mt-3">
-        <Icon icon="line-md:chat-filled" width="16" height="16" />
+  <div className={`flex ${message.role === "user" ? "justify-end" : "justify-start"} mb-6`}>
+    <div className={`flex items-start space-x-3 max-w-4xl ${message.role === "user" ? "flex-row-reverse space-x-reverse" : ""}`}>
+      <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${
+        message.role === "user" 
+          ? "bg-[#FFBB00] text-white" 
+          : "bg-[#FFBB00] text-white"
+      }`}>
+        <Icon 
+          icon={message.role === "user" ? "material-symbols:person" : "mingcute:ai-fill"} 
+          className="w-5 h-5" 
+        />
       </div>
-    )}
-    <div className="flex-col">
-      <div
-        className={`w-fit text-xs ${
-          message.role === "user"
-            ? "ml-2 mt-3 p-3 rounded-l-xl rounded-br-xl bg-transparent text-white/50 border border-white/15"
-            : "ml-2 mt-3 p-3 rounded-r-xl rounded-bl-xl bg-transparent text-white/50 border border-white/15"
-        }`}
-      >
+      <div className={`rounded-2xl p-4 shadow-sm border max-w-3xl ${
+        message.role === "user" 
+          ? "bg-[#FFBB00] text-white rounded-tr-md" 
+          : "bg-white text-gray-800 rounded-tl-md border-gray-100"
+      }`}>
         {message.role === "ai" ? (
           <CodeBlock content={message.content} />
         ) : (
-          <p className="w-full text-xs">{message.content || "Error: No message content"}</p>
+          <p className="text-sm leading-relaxed whitespace-pre-wrap">
+            {message.content || "Error: No message content"}
+          </p>
         )}
       </div>
     </div>

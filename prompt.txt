@@ -1,0 +1,406 @@
+Pelajari kode NextJS ini:
+// src/components/ChatFloating.js
+import { Icon } from "@iconify/react";
+
+const ChatFloating = ({ input, setInput, handleSend, isLoading }) => {
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault();
+      if (!isLoading) handleSend();
+    }
+  };
+
+  return (
+    <div className="z-50 m-2 fixed bottom-0 left-0 right-0 lg:ml-[360px] lg:mr-[360px] bg-white/5 backdrop-blur border border-white/15 rounded-3xl">
+      <textarea
+        type="text"
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        onKeyDown={handleKeyDown}
+        placeholder="Masukan pesan disini"
+        className="bg-transparent text-white/50 rounded-3xl w-full h-12 p-5 resize-none focus:outline-none"
+        disabled={isLoading}
+      />
+
+      <div className="flex justify-end items-center p-3 rounded-3xl">
+        <button
+          onClick={handleSend}
+          className={`p-5 w-[64px] font-semibold rounded-full transition ${
+            isLoading ? "bg-white/5 text-white cursor-not-allowed" : "bg-white/5 text-white"
+          }`}
+          disabled={isLoading}
+        >
+          <Icon icon={isLoading ? "line-md:loading-twotone-loop" : "line-md:arrow-small-right"} width="24" height="24" />
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default ChatFloating;
+
+// src/components/ChatForm.js
+import { Icon } from "@iconify/react";
+
+const ChatForm = ({ input, setInput, handleSend, isLoading }) => {
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault();
+      if (!isLoading) handleSend();
+    }
+  };
+
+  return (
+    <div className="w-full bg-black/5 backdrop-blur border border-white/15 rounded-3xl">
+      <textarea
+        type="text"
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        onKeyDown={handleKeyDown}
+        placeholder="Masukan pesan disini"
+        className="bg-transparent text-white/50 rounded-3xl w-full h-20 sm:h-32 p-5 resize-none focus:outline-none"
+        disabled={isLoading}
+      />
+
+      <div className="flex justify-end items-center p-3 rounded-3xl">
+        <button
+          onClick={handleSend}
+          className={`p-5 w-[64px] font-semibold rounded-full transition ${
+            isLoading ? "bg-white/5 text-white cursor-not-allowed" : "bg-white/5 text-white"
+          }`}
+          disabled={isLoading}
+        >
+          <Icon icon={isLoading ? "line-md:loading-twotone-loop" : "line-md:arrow-small-right"} width="24" height="24" />
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default ChatForm;
+
+// src/components/ChatHeader.js
+import ProtectedImage from "@/components/ProtectedImage";
+
+const ChatHeader = () => (
+  <div className="pl-5 pr-5 pb-5 bg-none">
+    <ProtectedImage
+      src="mekarjs.png"
+      alt="logo"
+      className="h-44 mb-3"
+    />
+    <p className="text-3xl font-normal text-black">MekarAI</p>
+    <p className="text-xl font-thin text-black/75"><u><a href="https://github.com/yogawan/jawiraiv1.6.3">Open Source</a></u> <i className="text-white">User Interface</i> to interact with AI Model</p>
+  </div>
+);
+
+export default ChatHeader;
+
+// src/components/ChatHistory.js
+import ChatMessage from "@/components/ChatMessage";
+import { Icon } from "@iconify/react";
+
+const ChatHistory = ({ chatHistory, isLoading, handleClearHistory }) => (
+  <div className="flex-col pb-64">
+    {chatHistory.length === 0 ? (
+      <div className="mt-5">
+        <p className="text-xs text-center p-1 font-light leading-[120%] text-white/50">
+          Jika ada pesan yang tidak sepantasnya,<br />silahkan lapor <u><a href="https://github.com/yogawan/jawiraiv1.6.3">disini</a></u> yaaaaaaa...
+        </p>
+      </div>
+    ) : (
+      chatHistory.map((message, index) => <ChatMessage key={index} message={message} index={index} />)
+    )}
+
+    {isLoading && (
+      <div className="flex justify-start m-5">
+        <Icon icon="line-md:loading-twotone-loop" width="16" height="16" className="mt-3 text-white"/>
+        <div className="w-fit text-xs ml-2 mt-3 p-3 rounded-r-xl rounded-bl-xl bg-transparent text-white/50 border border-white/15">
+          Typing...
+        </div>
+      </div>
+    )}
+
+    <div className="flex justify-center p-5">
+      <button onClick={handleClearHistory} className="px-5 py-3 border border-white/10 text-xs text-white rounded-full">
+        Clear History
+      </button>
+    </div>
+  </div>
+);
+
+export default ChatHistory;
+
+// src/components/ChatMessage.js
+import { Icon } from "@iconify/react";
+import CodeBlock from "./CodeBlock";
+
+const ChatMessage = ({ message, index }) => (
+  <div className={`flex m-5 ${message.role === "user" ? "justify-end" : "justify-start"}`}>
+    {message.role !== "user" && (
+      <div className="text-center text-xs text-white mt-3">
+        <Icon icon="line-md:chat-filled" width="16" height="16" />
+      </div>
+    )}
+    <div className="flex-col">
+      <div
+        className={`w-fit text-xs ${
+          message.role === "user"
+            ? "ml-2 mt-3 p-3 rounded-l-xl rounded-br-xl bg-transparent text-white/50 border border-white/15"
+            : "ml-2 mt-3 p-3 rounded-r-xl rounded-bl-xl bg-transparent text-white/50 border border-white/15"
+        }`}
+      >
+        {message.role === "ai" ? (
+          <CodeBlock content={message.content} />
+        ) : (
+          <p className="w-full text-xs">{message.content || "Error: No message content"}</p>
+        )}
+      </div>
+    </div>
+  </div>
+);
+
+export default ChatMessage;
+
+// src/components/CodeBlock.js
+import { useState } from "react";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+const dracula = require("react-syntax-highlighter/dist/cjs/styles/prism/dracula").default;
+
+const CodeBlock = ({ content }) => {
+  const [copiedIndex, setCopiedIndex] = useState(null);
+  const parts = content.split(/(```[\s\S]*?```)/g);
+
+  const handleCopyCode = (code, index) => {
+    navigator.clipboard.writeText(code);
+    setCopiedIndex(index);
+    setTimeout(() => setCopiedIndex(null), 2000);
+  };
+
+  return (
+    <div className="w-[256px] text-xs overflow-x-auto">
+      {parts.map((part, index) => {
+        if (part.startsWith("```")) {
+          const languageMatch = part.match(/```(\w+)?/);
+          const language = languageMatch ? languageMatch[1] : "plaintext";
+          const code = part.replace(/```[a-z]*\n?/i, "").replace(/```$/, "");
+
+          return (
+            <div
+              key={index}
+              className="relative border border-white/15 text-white rounded-xl mb-5 p-4 bg-[#1e1e1e] overflow-x-auto"
+            >
+              <button
+                onClick={() => handleCopyCode(code, index)}
+                className="absolute top-2 right-2 border border-white/15 text-white text-[10px] px-2 py-1 rounded hover:bg-gray-600 transition"
+              >
+                {copiedIndex === index ? "Copied!" : "Copy"}
+              </button>
+
+              <SyntaxHighlighter
+                language={language}
+                style={dracula}
+                className="rounded-xl !bg-transparent"
+                customStyle={{ margin: 0, fontSize: "0.75rem" }}
+              >
+                {code}
+              </SyntaxHighlighter>
+            </div>
+          );
+        }
+
+        return <FormattedText key={index} text={part} />;
+      })}
+    </div>
+  );
+};
+
+const FormattedText = ({ text }) => {
+  return (
+    <div className="-z-10 w-full text-xs">
+      {text.split("\n").map((line, index) => {
+        line = line.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+        line = line.replace(/\*(.*?)\*/g, "<em>$1</em>");
+        line = line.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-blue-500 underline">$1</a>');
+
+        if (/^\s*-\s/.test(line)) {
+          return (
+            <ul key={index} className="list-disc ml-5">
+              <li dangerouslySetInnerHTML={{ __html: line.substring(2) }}></li>
+            </ul>
+          );
+        }
+
+        return <p key={index} dangerouslySetInnerHTML={{ __html: line }} className="mb-2"></p>;
+      })}
+    </div>
+  );
+};
+
+export default CodeBlock;
+
+// src/components/ProtectedImage.js
+import React from "react";
+
+const ProtectedImage = ({ src, alt, className }) => (
+    <div
+      className="relative"
+      onContextMenu={(e) => e.preventDefault()}
+      style={{ userSelect: "none" }}
+    >
+      <img src={src} alt={alt} className={`${className} pointer-events-none`} draggable="false" />
+      <div className="absolute inset-0 bg-transparent"></div>
+    </div>
+  );
+
+export default ProtectedImage;
+
+// src/pages/index.js
+import React, { useState, useEffect } from "react";
+import { requestToGroqAI } from "@/utilities/groq";
+import ChatHeader from "@/components/ChatHeader";
+import ChatForm from "@/components/ChatForm";
+import ChatHistory from "@/components/ChatHistory";
+import ChatFloating from "@/components/ChatFloating";
+import Navbar from "@/components/Navbar";
+import Head from "next/head";
+
+const ChatAI = () => {
+  const [input, setInput] = useState("");
+  const [chatHistory, setChatHistory] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [hasHistory, setHasHistory] = useState(false);
+
+  useEffect(() => {
+    try {
+      const savedHistory = JSON.parse(localStorage.getItem("chatHistory"));
+      if (Array.isArray(savedHistory) && savedHistory.length > 0) {
+        setChatHistory(savedHistory);
+        setHasHistory(true);
+      } else {
+        setHasHistory(false);
+      }
+    } catch {
+      setChatHistory([]);
+      setHasHistory(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (chatHistory.length > 0) {
+      localStorage.setItem("chatHistory", JSON.stringify(chatHistory));
+      setHasHistory(true);
+    } else {
+      localStorage.removeItem("chatHistory");
+      setHasHistory(false);
+    }
+  }, [chatHistory]);
+
+  const handleSend = async () => {
+    if (!input.trim() || input.length > 500) return;
+
+    const userMessage = { role: "user", content: input };
+    setChatHistory((prev) => [...prev, userMessage]);
+    setInput("");
+    setIsLoading(true);
+
+    try {
+      const aiResponse = await requestToGroqAI(input);
+      const aiMessage = { role: "ai", content: aiResponse };
+      setChatHistory((prev) => [...prev, aiMessage]);
+    } catch {
+      setChatHistory((prev) => [
+        ...prev,
+        { role: "ai", content: "Sorry, an error occurred." },
+      ]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleClearHistory = () => {
+    setChatHistory([]);
+  };
+
+  return (
+    <div className="bg-[#EEEEEE] bg-cover bg-center flex justify-center pt-32">
+      <Head>
+        <title>MekarAI</title>
+      </Head>
+      <div className="w-full sm:w-[720px]">
+        <div className="flex flex-col min-h-screen">
+          {/* <Navbar /> */}
+          {!hasHistory && (
+            <div>
+              <ChatHeader />
+              <ChatForm
+                input={input}
+                setInput={setInput}
+                handleSend={handleSend}
+                isLoading={isLoading}
+              />
+            </div>
+          )}
+          {hasHistory && (
+            <ChatFloating
+              input={input}
+              setInput={setInput}
+              handleSend={handleSend}
+              isLoading={isLoading}
+            />
+          )}
+          <ChatHistory
+            chatHistory={chatHistory}
+            isLoading={isLoading}
+            handleClearHistory={handleClearHistory}
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ChatAI;
+
+// src/utilities/groq.js
+import { Groq } from 'groq-sdk';
+
+const GROQ_API = process.env.NEXT_PUBLIC_GROQ;
+
+if (!GROQ_API) {
+  throw new Error("API key for Groq is missing. Check your .env file.");
+}
+
+const groq = new Groq({
+  apiKey: GROQ_API,
+  dangerouslyAllowBrowser: true
+});
+
+const chatHistory = [
+  {
+    role: "system",
+    content: "Mulai sekarang kamu adalah model yang di buat oleh Yogawan, mahasiswa dari University of Technology Yogyakarta, nama kamu JawirAI"
+  },
+];
+
+export const requestToGroqAI = async (content) => {
+  try {
+    chatHistory.push({ role: 'user', content });
+
+    const reply = await groq.chat.completions.create({
+      messages: chatHistory,
+      model: 'llama3-8b-8192'
+    });
+
+    const responseMessage = reply.choices[0].message.content;
+    chatHistory.push({ role: 'assistant', content: responseMessage });
+
+    return responseMessage;
+  } catch (error) {
+    console.error('Error making request to Groq AI:', error);
+    throw error;
+  }
+};
+
+Tugas kamu:
+Buat tampilan UI menjadi lebih modern dan interaktif, tapi light theme, dengan warna background #EEEEEE dan primary color #FFBB00
