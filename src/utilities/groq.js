@@ -22,7 +22,7 @@ const chatHistory = [
 
 const fetchAndAddDataset = async () => {
   try {
-    const response = await axios.get('http://localhost:3000/api/dataset');
+    const response = await axios.get('https://mekarjs-api.vercel.app/api/dataset');
     if (response.data.berhasil) {
       const data = response.data.data;
       const datasetMessage = {
