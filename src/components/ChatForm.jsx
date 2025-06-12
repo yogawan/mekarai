@@ -13,14 +13,17 @@ const ChatForm = ({ input, setInput, handleSend, isLoading }) => {
   };
 
   const messageRecommendations = [
-    { text: "Apa itu MekarAI?", icon: "mdi:help-circle-outline" },
-    { text: "Bagaimana cara menggunakan MekarAI?", icon: "mdi:book-open-outline" },
-    { text: "Berikan contoh implementasi AI", icon: "mdi:code-braces" },
-    { text: "Apa keunggulan model llama3?", icon: "mdi:lightning-bolt-outline" },
-    { text: "Jelaskan machine learning", icon: "mdi:brain" },
-    { text: "Tutorial React JS", icon: "mdi:react" },
-    { text: "Tips coding efisien", icon: "mdi:speedometer" },
-    { text: "Perbedaan AI dan ML", icon: "mdi:compare-horizontal" }
+    { text: "Net Profit?", icon: "mdi:currency-usd" },
+    { text: "Pajak PPh & PPn?", icon: "mdi:receipt" },
+    { text: "Income Penjualan?", icon: "mdi:trending-up" },
+    { text: "Income Pembelian?", icon: "mdi:trending-down" },
+    { text: "Nilai Inventory?", icon: "mdi:warehouse" },
+    { text: "Nilai semua produk yang tersedia?", icon: "mdi:package-variant" },
+    { text: "Nilai produksi?", icon: "mdi:factory" },
+    { text: "Gaji Karyawan yang harus di bayar", icon: "mdi:account-cash" },
+    { text: "Produk yang paling banyak di beli?", icon: "mdi:cart-arrow-down" },
+    { text: "Produk yang paling banyak di jual?", icon: "mdi:cart-arrow-up" },
+    { text: "Role karyawan dengan gaji tertinggi?", icon: "mdi:account-star" }
   ];
 
   const handleRecommendationClick = (msg) => {

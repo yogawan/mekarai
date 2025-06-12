@@ -67,7 +67,7 @@ const ChatAI = () => {
   return (
     <div className="min-h-screen bg-[#EEEEEE]">
       <Head>
-        <title>MekarAI - Chat dengan AI</title>
+        <title>MekarAI</title>
         <meta name="description" content="Interface modern untuk berinteraksi dengan JawirAI" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
