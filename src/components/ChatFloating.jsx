@@ -37,7 +37,7 @@ const ChatFloating = ({ input, setInput, handleSend, isLoading }) => {
               <div className="w-2 h-2 bg-[#FFBB00] rounded-full animate-pulse delay-100"></div>
               <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse delay-200"></div>
             </div>
-            <span className="text-xs font-medium text-gray-500">MekarAI Online</span>
+            <span className="text-xs font-medium text-gray-500">MekarAI</span>
           </div>
           
           {/* Minimize/Expand button */}
@@ -63,7 +63,7 @@ const ChatFloating = ({ input, setInput, handleSend, isLoading }) => {
               onKeyDown={handleKeyDown}
               onFocus={() => setIsFocused(true)}
               onBlur={() => setIsFocused(false)}
-              placeholder="Ketik pesan untuk MekarAI..."
+              placeholder="Tanya MekarAI"
               className="w-full resize-none border-0 bg-transparent text-gray-800 placeholder-gray-400 focus:outline-none min-h-[40px] max-h-32 overflow-y-auto text-sm leading-relaxed"
               disabled={isLoading}
               rows={1}

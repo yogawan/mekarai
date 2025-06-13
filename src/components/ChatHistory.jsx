@@ -41,7 +41,7 @@ const ChatHistory = ({ chatHistory, isLoading, handleClearHistory }) => (
           <div className="bg-white rounded-2xl rounded-tl-md p-4 shadow-sm border border-gray-100">
             <div className="flex items-center space-x-2 text-gray-500">
               <Icon icon="line-md:loading-twotone-loop" className="w-4 h-4" />
-              <span className="text-sm">JawirAI sedang mengetik...</span>
+              <span className="text-sm">MekarAI sedang mengetik...</span>
             </div>
           </div>
         </div>
